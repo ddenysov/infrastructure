@@ -11,6 +11,4 @@ RUN apk --update --no-cache add build-base \
 RUN pecl install amqp
 RUN docker-php-ext-enable amqp
 
-COPY ./conf/messenger-worker.conf /etc/supervisor/conf.d/messenger-worker.conf
-
-CMD supervisord -c /etc/supervisor/conf.d/messenger-worker.conf
+CMD supervisord -c /var/www/etc/supervisor/conf/messenger-worker.conf

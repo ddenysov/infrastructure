@@ -14,4 +14,4 @@ RUN apk --update --no-cache add build-base \
 RUN pecl install amqp
 RUN docker-php-ext-enable amqp
 
-CMD symfony server:start && symfony server:start
+CMD symfony server:stop && symfony server:start --port=8181

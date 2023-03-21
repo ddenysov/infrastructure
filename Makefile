@@ -1,3 +1,8 @@
+START := docker-compose \
+	-f services/mail/docker-compose.yml \
+	-f shared/rabbitmq/docker-compose.yml \
+	-f api-gateway/docker-compose.yml
+
 build-app:
 	docker build images/app --tag ghcr.io/ddenysov/app:latest
 
@@ -15,16 +20,20 @@ build-all: build-app build-supervisor push-app push-supervisor
 run-gateway:
 	docker-compose  -f api-gateway/docker-compose.yml up -d
 
-config:
-	docker-compose -f services/mail/docker-compose.yml \
-		-f shared/rabbitmq/docker-compose.yml \
-		-f api-gateway/docker-compose.yml \
-		config > docker-compose.yml
-
 run-all:
-	docker-compose up -d
+	docker-compose -f services/mail/docker-compose.yml up -d
 
-start: config run-all
+test:
+	echo @$(START)
+
+stop-all:
+	docker-compose -f services/mail/docker-compose.yml down
+
+config:
+	@$(START) config
+
+start:
+	@$(START) up -d
 
 stop:
-	docker-compose stop
+	@$(START) down

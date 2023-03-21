@@ -5,3 +5,12 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      internal-services:
+        aliases:
+          - rabbit_admin
+
+networks:
+  internal-services:
+    name: internal-services
+    external: true

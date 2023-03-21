@@ -1,6 +1,7 @@
 FROM php:8.2-alpine
 
 WORKDIR /var/www
+RUN rm -rf html
 
 RUN apk update && apk --no-cache add bash git supervisor
 RUN apk add libpq-dev && docker-php-ext-install pdo pdo_pgsql pgsql

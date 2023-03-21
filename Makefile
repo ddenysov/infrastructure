@@ -1,6 +1,7 @@
 START := docker-compose \
-	-f services/mail/docker-compose.yml \
 	-f shared/rabbitmq/docker-compose.yml \
+	-f services/mail/docker-compose.yml \
+	-f services/user/docker-compose.yml \
 	-f api-gateway/docker-compose.yml
 
 build-app:

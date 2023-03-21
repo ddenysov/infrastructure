@@ -1,5 +1,7 @@
 version: '3'
 services:
+  #USER
+  # MAILER
   mailer:
     image: ghcr.io/ddenysov/mailer:latest
   mailer-supervisor:

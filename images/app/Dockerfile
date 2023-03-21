@@ -1,6 +1,6 @@
 FROM php:8.2-alpine
-
 WORKDIR /var/www
+RUN rm -rf html
 
 RUN apk update && apk --no-cache add bash git
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
@@ -14,4 +14,4 @@ RUN apk --update --no-cache add build-base \
 RUN pecl install amqp
 RUN docker-php-ext-enable amqp
 
-CMD symfony server:stop && symfony server:start --port=8181
+CMD composer install && symfony server:stop && symfony server:start --port=8181

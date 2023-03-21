@@ -14,3 +14,17 @@ build-all: build-app build-supervisor push-app push-supervisor
 
 run-gateway:
 	docker-compose  -f api-gateway/docker-compose.yml up -d
+
+config:
+	docker-compose -f services/mail/docker-compose.yml \
+		-f shared/rabbitmq/docker-compose.yml \
+		-f api-gateway/docker-compose.yml \
+		config > docker-compose.yml
+
+run-all:
+	docker-compose up -d
+
+start: config run-all
+
+stop:
+	docker-compose stop

@@ -3,7 +3,7 @@ services:
   gateway:
     image: kong/kong-gateway:3.2.1.0
     volumes:
-      - ./:/kong/declarative
+      - $PWD/api-gateway/:/kong/declarative
     ports:
       - 8000:8000
       - 8443:8443
@@ -14,18 +14,11 @@ services:
       - 8003:8003
       - 8004:8004
     env_file:
-      - .env
+      - $PWD/api-gateway/.env
     networks:
       internal-services:
     external_links:
       - user_service
-
-#  test:
-#    image: ghcr.io/ddenysov/supervisor:latest
-#    volumes:
-#      - ./:/var/www
-#    networks:
-#      internal-services:
 
 networks:
   internal-services:

@@ -1,22 +1,11 @@
 version: '3'
 services:
-  #USER
-  # MAILER
   mailer:
-    image: ghcr.io/ddenysov/mailer:latest
-  mailer-supervisor:
-    image: ghcr.io/ddenysov/mailer-supervisor:latest
-    external_links:
-      - bus
-  mailhog:
-    image: mailhog/mailhog:latest
-    external_links:
-      - bus
-    volumes:
-      - mailhog:/maildir
-    ports:
-      - "1025:1025" #smtp server
-      - "8025:8025" #web ui
+    image: ghcr.io/ddenysov/base:latest
+    environment:
+      APP_REPO: https://github.com/ddenysov/mail.git
+      APP_MODE: app
+      APP_PORT: 9901
 
 volumes:
   mailhog:

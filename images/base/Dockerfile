@@ -14,7 +14,7 @@ RUN apk --update --no-cache add build-base \
 RUN pecl install amqp
 RUN docker-php-ext-enable amqp
 
-COPY ./conf/messenger-worker.conf /var/www/etc/supervisor/conf/
+COPY ./conf/messenger-worker.conf /etc/supervisor/conf/
 COPY ./start.sh /
 RUN chmod +x /start.sh
 ENTRYPOINT ["/start.sh"]

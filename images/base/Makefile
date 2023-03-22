@@ -14,3 +14,6 @@ build: build-base push-base
 
 run:
 	docker-compose run base bash
+
+ssh:
+	docker-compose exec base bash

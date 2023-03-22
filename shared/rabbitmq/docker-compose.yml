@@ -11,6 +11,8 @@ services:
           - rabbit_admin
 
 networks:
+  bus:
+    name: bus
   internal-services:
     name: internal-services
     external: true

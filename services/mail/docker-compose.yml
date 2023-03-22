@@ -6,8 +6,12 @@ services:
     image: ghcr.io/ddenysov/mailer:latest
   mailer-supervisor:
     image: ghcr.io/ddenysov/mailer-supervisor:latest
+    external_links:
+      - bus
   mailhog:
     image: mailhog/mailhog:latest
+    external_links:
+      - bus
     volumes:
       - mailhog:/maildir
     ports:
@@ -16,3 +20,8 @@ services:
 
 volumes:
   mailhog:
+
+networks:
+  bus:
+    name: bus
+    external: true

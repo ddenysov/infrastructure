@@ -4,6 +4,12 @@ START := docker-compose \
 	-f services/user/docker-compose.yml \
 	-f api-gateway/docker-compose.yml
 
+build-base:
+	docker build images/base --tag ghcr.io/ddenysov/base:latest
+
+push-base:
+	docker push ghcr.io/ddenysov/base:latest
+
 build-app:
 	docker build images/app --tag ghcr.io/ddenysov/app:latest
 

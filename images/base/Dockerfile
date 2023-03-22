@@ -2,7 +2,7 @@ FROM php:8.2-alpine
 WORKDIR /var/www
 RUN rm -rf html
 
-RUN apk update && apk --no-cache add bash git
+RUN apk update && apk --no-cache add bash git supervisor
 RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
 RUN apk add symfony-cli
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=2.3.1
@@ -13,3 +13,8 @@ RUN apk --update --no-cache add build-base \
         rabbitmq-c-dev
 RUN pecl install amqp
 RUN docker-php-ext-enable amqp
+
+COPY ./conf/messenger-worker.conf /var/www/etc/supervisor/conf/
+COPY ./start.sh /
+RUN chmod +x /start.sh
+ENTRYPOINT ["/start.sh"]

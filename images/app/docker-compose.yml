@@ -1,0 +1,8 @@
+version: '3'
+services:
+  #USER
+  # MAILER
+  app:
+    image: ghcr.io/ddenysov/app:latest
+    environment:
+      - APP_PORT=5555

@@ -1,0 +1,6 @@
+version: '3'
+services:
+  #USER
+  # MAILER
+  base:
+    image: ghcr.io/ddenysov/base:latest

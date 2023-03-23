@@ -5,7 +5,7 @@ START := docker-compose \
 	-f api-gateway/docker-compose.yml
 
 build-base:
-	docker build . --tag ghcr.io/ddenysov/base:latest
+	docker build . --build-arg CACHE_DROP=$$RANDOM --build-arg APP_PORT=9901 --build-arg APP_MODE=app --build-arg APP_REPO=https://github.com/ddenysov/mail.git --tag ghcr.io/ddenysov/base:latest
 
 push-base:
 	docker push ghcr.io/ddenysov/base:latest
@@ -17,3 +17,6 @@ run:
 
 ssh:
 	docker-compose exec base bash
+
+rnd:
+	echo $$RANDOM

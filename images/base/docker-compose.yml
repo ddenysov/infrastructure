@@ -4,9 +4,5 @@ services:
   # MAILER
   base:
     image: ghcr.io/ddenysov/base:latest
-    environment:
-      APP_REPO: https://github.com/ddenysov/mail.git
-      APP_MODE: app
-      APP_PORT: 9901
     ports:
       - "9901:9901"

@@ -2,10 +2,8 @@
 #
 #  This script should be used for generating .env file for Laravel
 #
-git clone "${APP_REPO}" .
-
-echo "Install dependencies"
-composer install
+# echo "Install dependencies"
+# composer install
 
 if [ "${APP_DB}" = true ]
 then
@@ -16,12 +14,6 @@ echo "Migrate database"
 php bin/console doctrine:migrations:migrate --no-interaction
 fi
 
-if [ "${APP_MODE}" = app ]
-then
-symfony server:stop && symfony server:start --port="${APP_PORT}"
-fi
+# run container
+symfony server:stop && symfony server:start --port="${ENV_APP_PORT}"
 
-if [ "${APP_MODE}" = supervisor ]
-then
-supervisord -c /etc/supervisor/conf/messenger-worker.conf
-fi

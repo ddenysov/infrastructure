@@ -3,7 +3,7 @@ services:
   user:
     image: ghcr.io/ddenysov/user:latest
     ports:
-      - "10001:8181"
+      - "9901:9901"
     links:
       - database
     external_links:
